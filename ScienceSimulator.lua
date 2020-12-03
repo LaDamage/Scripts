@@ -18,7 +18,6 @@ local JumpPower = game.Players.LocalPlayer.Character.Humanoid.JumpPower
 --// Categories
 local stuff = main:CreateCategory("Farming")
 local pets = main:CreateCategory("Egg Open")
---local delt = main:CreateCategory("Pet Delete")
 local settings = main:CreateCategory("Settings")
 
 --// Sections
@@ -212,7 +211,7 @@ ssection:Create(
 
 --// Functions
 spawn(function()
-    while rs:wait() do
+    while wait() do
         if _G.Click then
             game:GetService("ReplicatedStorage").Remotes.Events["f1f0c2a6-7b58-4b19-893a-2ed788519af0"]:FireServer()
         end
