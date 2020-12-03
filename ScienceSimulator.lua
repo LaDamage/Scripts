@@ -257,7 +257,7 @@ spawn(function()
     end
 end)
 spawn(function()
-    while wait(.25) do
+    while wait() do
         if _G.eggyopen then
             local args = {
                 [1] = {
@@ -271,7 +271,7 @@ spawn(function()
     end
 end)
 spawn(function()
-    while wait(.25) do
+    while wait() do
         if _G.eggy3open then
             local args = {
                 [1] = {
