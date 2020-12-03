@@ -73,6 +73,14 @@ rselect:Create(
         _G.SRebirth = 2
     elseif RebOption == "100 Rebirths" then
         _G.SRebirth = 3
+    elseif RebOption == "500 Rebirths" then
+        _G.SRebirth = 4
+    elseif RebOption == "10k Rebirths" then
+        _G.SRebirth = 5
+    elseif RebOption == "80k Rebirths" then
+        _G.SRebirth = 6
+    elseif RebOption == "200k Rebirths" then
+        _G.SRebirth = 7
     end
 end,
 {
@@ -82,6 +90,11 @@ end,
       "5 Rebirths",
       "25 Rebirths",
       "100 Rebirths",
+      "500 Rebirths",
+      "10k Rebirths",
+      "80k Rebirths",
+      "200k Rebirths",
+
   },
   default = "Rebirth Selector",
   search = false,
