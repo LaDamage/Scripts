@@ -241,7 +241,7 @@ ssection:Create(
 spawn(function()
     while wait() do
         if _G.Click then
-            game:GetService("ReplicatedStorage").Remotes.Events["f1f0c2a6-7b58-4b19-893a-2ed788519af0"]:FireServer()
+            game:GetService("ReplicatedStorage").Remotes.Events["eb5ddfd4-0a1a-47d4-85db-c3130fb856a4"]:FireServer()
         end
     end
 end)
@@ -252,7 +252,7 @@ spawn(function()
                 [1] = _G.SRebirth
             }
             
-            game:GetService("ReplicatedStorage").Remotes.Events["49554d92-c3af-4b2d-bda3-de28a5f01bde"]:FireServer(unpack(args))
+            game:GetService("ReplicatedStorage").Remotes.Events["87cc8504-5969-4dff-b0cc-f0c1297e0b35"]:FireServer(unpack(args))
         end
     end
 end)
@@ -266,7 +266,7 @@ spawn(function()
                 }
             }
             
-            game:GetService("ReplicatedStorage").Remotes.Functions["9e7a790b-c47e-4c46-8c6e-dfa6606b05b5"]:InvokeServer(unpack(args))
+            game:GetService("ReplicatedStorage").Remotes.Functions["e32eab1b-1ba1-4c85-898e-0a1f140f85d7"]:InvokeServer(unpack(args))
         end
     end
 end)
@@ -280,7 +280,7 @@ spawn(function()
                 }
             }
             
-            game:GetService("ReplicatedStorage").Remotes.Functions["9e7a790b-c47e-4c46-8c6e-dfa6606b05b5"]:InvokeServer(unpack(args))
+            game:GetService("ReplicatedStorage").Remotes.Functions["e32eab1b-1ba1-4c85-898e-0a1f140f85d7"]:InvokeServer(unpack(args))
         end
     end
 end)
