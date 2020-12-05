@@ -1,70 +1,28 @@
---// idfk anymore
-local UILol = game:GetService("CoreGui"):FindFirstChild("ScreenGui")
-if UILol then 
-    UILol:Destroy()
+--// UI Detection
+local OrionUI = game:GetService("CoreGui"):FindFirstChild("ScreenGui")
+if OrionUI then 
+    OrionUI:Destroy()
 end
 
---// Other Important Stuff
-local library = loadstring(game:HttpGet("https://zypher.wtf/UI-Lib"))()
-local main = library:CreateMain("ScreenGui")
-local players = game.Players:GetPlayers()
+--// Setup Variables
 local plr = game.Players.LocalPlayer
-local RunService = game:GetService("RunService")
-local rs = RunService.RenderStepped
-local VirtualUser = game:GetService("VirtualUser")
 local WalkSpeed = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
 local JumpPower = game.Players.LocalPlayer.Character.Humanoid.JumpPower
+local VirtualUser = game:GetService("VirtualUser")
+local RunService = game:GetService("RunService")
 
---// Categories
-local stuff = main:CreateCategory("Farming")
-local pets = main:CreateCategory("Egg Open")
-local settings = main:CreateCategory("Settings")
+local Orion = loadstring(game:HttpGet("https://raw.githubusercontent.com/LaDamage/Orion/main/UILibrary"))()
 
---// Sections
-local rselect = stuff:CreateSection("Selector")
-local farming = stuff:CreateSection("Farming Section")
 
-local pselect = pets:CreateSection("Selector")
-local openeggs = pets:CreateSection("Pet Open Section")
+--// UI Setup
+local main = Orion:CreateOrion("Orion | Science Simulator")
 
-local ssection = settings:CreateSection("UI Stuff")
-local csection = settings:CreateSection("Character")
+local farming = main:CreateSection("Farming")
+local pets = main:CreateSection("Egg Open")
+local settings = main:CreateSection("Settings")
 
---// Farming Tab
-farming:Create(
-    "Toggle",
-    "Auto Click",
-    function(ClickState)
-        if ClickState then
-            _G.Click = true
-        else
-            _G.Click = false
-        end
-    end,
-    {
-        default = false,
-    }
-)
-
-farming:Create(
-    "Toggle",
-    "Auto Rebirth",
-    function(RebirthState)
-        if RebirthState then
-            _G.autorebirth = true
-        else
-            _G.autorebirth = false
-        end
-    end,
-    {
-        default = false,
-    }
-)
-
-rselect:Create(
-  "Dropdown",
-  "Rebirth Selector",
-  function(RebOption)
+--// Farming Tab Setup
+farming:Dropdown("Rebirth Selected", {"1 Rebirth", "5 Rebirths", "25 Rebirths", "100 Rebirths", "500 Rebirths", "10k Rebirths", "80k Rebirths", "200k Rebirths", "400k Rebirths", "2M Rebirths", "4M Rebirths", "15M Rebirths", "75M Rebirths"}, function(RebOption)
     if RebOption == "1 Rebirth" then
         _G.SRebirth = 0
     elseif RebOption == "5 Rebirths" then
@@ -92,35 +50,24 @@ rselect:Create(
     elseif RebOption == "75M Rebirths" then
         _G.SRebirth = 12
     end
-end,
-{
-  options = {
-      "Rebirth Selector",
-      "1 Rebirth",
-      "5 Rebirths",
-      "25 Rebirths",
-      "100 Rebirths",
-      "500 Rebirths",
-      "10k Rebirths",
-      "80k Rebirths",
-      "200k Rebirths",
-      "400k Rebirths",
-      "2M Rebirths",
-      "4M Rebirths",
-      "15M Rebirths",
-      "75M Rebirths",
+end)
+farming:Toggle("Auto Click", function(ClickState)
+    if ClickState then
+        _G.Click = true
+    else
+        _G.Click = false
+    end
+end)
+farming:Toggle("Auto Rebirth", function(RebirthState)
+    if RebirthState then
+        _G.autorebirth = true
+    else
+        _G.autorebirth = false
+    end
+end)
 
-  },
-  default = "Rebirth Selector",
-  search = false,
-}
-)
-
---// Egg Tab
-pselect:Create(
-  "Dropdown",
-  "Egg Selector",
-  function(Option)
+--// Egg Open Tab Setup
+pets:Dropdown("Egg Selected", {"Common Egg", "Altar Egg", "Faded Egg", "Frosty Egg", "Event Egg"}, function(Option)
     if Option == "Common Egg" then
         _G.SEGG = "Common Egg"
     elseif Option == "Altar Egg" then
@@ -130,112 +77,41 @@ pselect:Create(
     elseif Option == "Frosty Egg" then
         _G.SEGG = "Frosty Egg"
     elseif Option == "Event Egg" then
-        _G.SEGG = "Vial Egg"
+        _G.SEGG = "Event Egg"
     end
-end,
-{
-  options = {
-      "Egg Selector",
-      "Common Egg",
-      "Altar Egg",
-      "Faded Egg",
-      "Frosty Egg",
-      "Event Egg",
-  },
-  default = "Egg Selector",
-  search = false,
-}
-)
-
-openeggs:Create(
-    "Toggle",
-    "Auto Open 1 Egg",
-    function(EggState)
-        if EggState then
-            _G.eggyopen = true
-        else
-            _G.eggyopen = false
-        end
-    end,
-    {
-        default = false,
-    }
-)
-openeggs:Create(
-    "Toggle",
-    "Auto Open 3 Eggs (Gamepass)",
-    function(Egg3State)
-        if Egg3State then
-            _G.eggy3open = true
-        else
-            _G.eggy3open = false
-        end
-    end,
-    {
-        default = false,
-    }
-)
-
---// Setting Tab
-csection:Create(
-  "Slider",
-  "WalkSpeed",
-  function(value)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = tonumber(value)
-  end,
-  {
-      min = WalkSpeed,
-      max = 150,
-      -- Optional
-      default = WalkSpeed,
-      precise = true,
-      changablevalue = true
-  }
-)
-csection:Create(
-  "Slider",
-  "JumpPower",
-  function(value)
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = tonumber(value)
-  end,
-  {
-      min = JumpPower,
-      max = 250,
-      -- Optional
-      default = JumpPower,
-      precise = true, -- ex: 0.1, 0.2, 0.3
-      changablevalue = true
-  }
-)
-ssection:Create(
-    "KeyBind",
-    "Toggle UI", 
-    function()
-        if game:GetService("CoreGui").ScreenGui.Enabled == true then
-            game:GetService("CoreGui").ScreenGui.Enabled = false
-        else
-            game:GetService("CoreGui").ScreenGui.Enabled = true
-        end
-    end,
-    {
-        default = Enum.KeyCode.P
-    }
-)
-ssection:Create(
-    "Button",
-    "Destroy UI",
-    function()
-        game:GetService("CoreGui"):FindFirstChild("ScreenGui"):Destroy()
-
-        _G.Click = false
-        _G.autorebirth = false
+end)
+pets:Toggle("Auto Open 1 Egg", function(EggState)
+    if EggState then
+        _G.eggyopen = true
+    else
         _G.eggyopen = false
+    end
+end)
+pets:Toggle("Auto Open 3 Eggs (Gamepass)", function(Egg3State)
+    if Egg3State then
+        _G.eggy3open = true
+    else
         _G.eggy3open = false
-    end,
-    {
-        animated = true,
-    }
-)
+    end
+end)
+
+--// Settings Tab Setup
+settings:Slider("WalkSpeed", WalkSpeed, 150, function(value)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+end)
+settings:Slider("JumpPower", JumpPower, 250, function(value)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+end)
+settings:KeyBind("Toggle UI", Enum.KeyCode.LeftAlt, function()
+    if game:GetService("CoreGui").ScreenGui.Enabled == true then
+        game:GetService("CoreGui").ScreenGui.Enabled = false
+    else
+        game:GetService("CoreGui").ScreenGui.Enabled = true
+    end
+end)
+settings:TextButton("Destroy", "Destroy the UI", function()
+    game:GetService("CoreGui"):FindFirstChild("ScreenGui"):Destroy()
+end)
 
 --// Functions
 spawn(function()
