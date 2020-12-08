@@ -67,7 +67,7 @@ farming:Toggle("Auto Rebirth", function(RebirthState)
 end)
 
 --// Egg Open Tab Setup
-pets:Dropdown("Egg Selected", {"Common Egg", "Altar Egg", "Faded Egg", "Frosty Egg", "Event Egg"}, function(Option)
+pets:Dropdown("Egg Selected", {"Common Egg", "Altar Egg", "Faded Egg", "Frosty Egg", "Candy Egg"}, function(Option)
     if Option == "Common Egg" then
         _G.SEGG = "Common Egg"
     elseif Option == "Altar Egg" then
@@ -76,8 +76,8 @@ pets:Dropdown("Egg Selected", {"Common Egg", "Altar Egg", "Faded Egg", "Frosty E
         _G.SEGG = "Faded Egg"
     elseif Option == "Frosty Egg" then
         _G.SEGG = "Frosty Egg"
-    elseif Option == "Event Egg" then
-        _G.SEGG = "Event Egg"
+    elseif Option == "Candy Egg" then
+        _G.SEGG = "Candy Egg"
     end
 end)
 pets:Toggle("Auto Open 1 Egg", function(EggState)
@@ -117,7 +117,7 @@ end)
 spawn(function()
     while wait() do
         if _G.Click then
-            game:GetService("ReplicatedStorage").Remotes.Events["eb5ddfd4-0a1a-47d4-85db-c3130fb856a4"]:FireServer()
+            game:GetService("ReplicatedStorage").Remotes.Events["bff993ab-622a-4afe-9de8-38029a222fea"]:FireServer()
         end
     end
 end)
@@ -128,7 +128,7 @@ spawn(function()
                 [1] = _G.SRebirth
             }
             
-            game:GetService("ReplicatedStorage").Remotes.Events["87cc8504-5969-4dff-b0cc-f0c1297e0b35"]:FireServer(unpack(args))
+            game:GetService("ReplicatedStorage").Remotes.Events["bf70e4e2-69c3-46ea-b7ac-e2adf52c31bc"]:FireServer(unpack(args))
         end
     end
 end)
@@ -142,7 +142,7 @@ spawn(function()
                 }
             }
             
-            game:GetService("ReplicatedStorage").Remotes.Functions["e32eab1b-1ba1-4c85-898e-0a1f140f85d7"]:InvokeServer(unpack(args))
+            game:GetService("ReplicatedStorage").Remotes.Functions["b305788e-9b71-41f5-8ece-ec32f73dec6a"]:InvokeServer(unpack(args))
         end
     end
 end)
@@ -156,7 +156,7 @@ spawn(function()
                 }
             }
             
-            game:GetService("ReplicatedStorage").Remotes.Functions["e32eab1b-1ba1-4c85-898e-0a1f140f85d7"]:InvokeServer(unpack(args))
+            game:GetService("ReplicatedStorage").Remotes.Functions["b305788e-9b71-41f5-8ece-ec32f73dec6a"]:InvokeServer(unpack(args))
         end
     end
 end)
