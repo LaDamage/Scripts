@@ -30,7 +30,45 @@ farming:Toggle("Auto Swing", function(SwingState)
     end
 end)
 
-farming:TextLabel("Auto Sell Soon!")
+farming:Toggle("Auto Sell", function(SellState)
+    if SellState then
+        _G.Sell = true
+    else
+        _G.Sell = false
+    end
+end)
+
+farming:TextLabel("Teleports")
+farming:Dropdown("Select Planet",
+{"Ground", "Secret Island", "Planet Zephyr (1)", "Planet Inferno (2)", "Planet Omega (3)", "Planet Elemental (4)"},
+function(TpOption)
+    if TpOption == "Ground" then
+        game.Workspace[plr.Name].HumanoidRootPart.CFrame = CFrame.new(-2, 113, 158)
+    elseif TpOption == "Secret Island" then
+        game.Workspace[plr.Name].HumanoidRootPart.CFrame = CFrame.new(2377, 132, 992)
+    elseif TpOption == "Planet Zephyr (1)" then
+        game.Workspace[plr.Name].HumanoidRootPart.CFrame = CFrame.new(9, 1467, 70)
+    elseif TpOption == "Planet Inferno (2)" then
+        game.Workspace[plr.Name].HumanoidRootPart.CFrame = CFrame.new(4, 3057, 99)
+    elseif TpOption == "Planet Omega (3)" then
+        game.Workspace[plr.Name].HumanoidRootPart.CFrame = CFrame.new(4, 4681, 99)
+    elseif TpOption == "Planet Elemental (4)" then 
+        game.Workspace[plr.Name].HumanoidRootPart.CFrame = CFrame.new(62, 6311, 101)
+    end
+end)
+
+farming:Dropdown("Select Training Area",
+{"Ancient Master Blade", "Soul Fusion Arena", "Forgotton Sanctuary"},
+function(TpOption)
+    if TpOption == "Ancient Master Blade" then
+        game.Workspace[plr.Name].HumanoidRootPart.CFrame = CFrame.new(-228, 130, 352)
+    elseif TpOption == "Soul Fusion Arena" then 
+        game.Workspace[plr.Name].HumanoidRootPart.CFrame = CFrame.new(310, 170, -191)
+    elseif TpOption == "Forgotton Sanctuary" then 
+        game.Workspace[plr.Name].HumanoidRootPart.CFrame = CFrame.new(1152, 6272, 861)
+    end
+end)
+
 
 autoBuy:Toggle("Buy Swords", function(SwordState)
     if SwordState then
@@ -56,6 +94,28 @@ autoBuy:Toggle("Buy Powers", function(PowerState)
     end
 end)
 
+pets:Dropdown("Select Egg",
+{"Electro Orb", "Astral Orb", "Sky Tempest Orb", "Mystic Fusion Orb", "Dark Supernova Orb", "Omega Genesis Orb", "Secret Shadows Orb", "Forgotten Legends Orb"},
+function(EggOption)
+    if EggOption == "Electro Orb" then
+        _G.SEGG = "Electro Orb"
+    elseif EggOption == "Astral Orb" then
+        _G.SEGG = "Astral Orb"
+    elseif EggOption == "Sky Tempest Orb" then
+        _G.SEGG = "Sky Tempest Orb"
+    elseif EggOption == "Mystic Fusion Orb" then
+        _G.SEGG = "Mystic Fusion Orb"
+    elseif EggOption == "Dark Supernova Orb" then
+        _G.SEGG = "Dark Supernova Orb"
+    elseif EggOption == "Omega Genesis Orb" then
+        _G.SEGG = "Omega Genesis Orb"
+    elseif EggOption == "Secret Shadows Orb" then
+        _G.SEGG = "Secret Shadows Orb"
+    elseif EggOption == "Forgotten Legends Orb" then
+        _G.SEGG = "Forgotten Legends Orb"
+    end
+end)
+
 pets:Toggle("Auto Evolve", function(EvolveState)
     if EvolveState then
         _G.Evolve = true
@@ -63,7 +123,20 @@ pets:Toggle("Auto Evolve", function(EvolveState)
         _G.Evolve = false
     end
 end)
-pets:TextLabel("More Coming Soon!")
+pets:Toggle("Open 1 Egg", function(E1State)
+    if E1State then
+        _G.E1 = true
+    else
+        _G.E1 = false
+    end
+end)
+pets:Toggle("Open 3 Eggs", function(E3State)
+    if E3State then
+        _G.E3 = true
+    else
+        _G.E3 = false
+    end
+end)
 
 --// Settings Tab Setup
 settings:Slider("WalkSpeed", WalkSpeed, 150, function(value)
@@ -96,6 +169,20 @@ spawn(function()
             }
             
             game:GetService("Players").LocalPlayer.saberEvent:FireServer(unpack(args))
+        end
+    end
+end)
+
+spawn(function()
+    while wait(.5) do
+        if _G.Sell then
+            for _, v in pairs(game:GetService("Workspace").sellAreaCircles:GetChildren()) do
+                if v.whichPlanet.Value == "Planet Elemental" then
+                    v.circleInner.CFrame = game.Workspace[plr.Name].HumanoidRootPart.CFrame
+                    wait(.1)
+                    v.circleInner.CFrame = CFrame.new(-75.0282364, 6314.25, 138.325836)
+                end
+            end
         end
     end
 end)
@@ -147,6 +234,34 @@ spawn(function()
         end
     end
 end)
+
+spawn(function()
+    while wait(1) do
+        if _G.E1 then
+        local args = {
+            [1] = "openOrb",
+            [2] = workspace.petOrbs[_G.SEGG]
+        }
+
+        game:GetService("ReplicatedStorage").rEvents.openOrbRemote:InvokeServer(unpack(args))
+        end
+    end
+end)
+
+spawn(function()
+    while wait(1) do
+        if _G.E3 then
+        local args = {
+            [1] = "openOrb",
+            [2] = workspace.petOrbs[_G.SEGG],
+            [3] = true
+        }
+
+        game:GetService("ReplicatedStorage").rEvents.openOrbRemote:InvokeServer(unpack(args))
+        end
+    end
+end)
+
 spawn(function()
     while wait(1) do
         if _G.Evolve then
