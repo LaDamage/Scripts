@@ -56,7 +56,14 @@ autoBuy:Toggle("Buy Powers", function(PowerState)
     end
 end)
 
-pets:TextLabel("Coming Soon!")
+pets:Toggle("Auto Evolve", function(EvolveState)
+    if EvolveState then
+        _G.Evolve = true
+    else
+        _G.Evolve = false
+    end
+end)
+pets:TextLabel("More Coming Soon!")
 
 --// Settings Tab Setup
 settings:Slider("WalkSpeed", WalkSpeed, 150, function(value)
@@ -137,6 +144,17 @@ spawn(function()
             }
             
             game:GetService("Players").LocalPlayer.saberEvent:FireServer(unpack(args))
+        end
+    end
+end)
+spawn(function()
+    while wait(1) do
+        if _G.Evolve then
+            local args = {
+                [1] = "autoEvolvePets"
+            }
+
+            game:GetService("ReplicatedStorage").rEvents.autoEvolveRemote:InvokeServer(unpack(args))
         end
     end
 end)
