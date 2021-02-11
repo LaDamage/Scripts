@@ -63,6 +63,6 @@ coroutine.wrap(AntiAFK_Handler)()
 --// Anti AFK
 local VU = game:GetService("VirtualUser")
 game:service'Players'.LocalPlayer.Idled:connect(function()
-	VU:CaptureController()
-	VU:ClickButton2(Vector2.new())
+    VU:CaptureController()
+    VU:ClickButton2(Vector2.new())
 end)
