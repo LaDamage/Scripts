@@ -21,7 +21,7 @@ local farming = main:CreateSection("Farming")
 local egghatch = main:CreateSection("Egg Hatching")
 local settings = main:CreateSection("Settings")
 
-farming:Dropdown("Selected Zone", {"The Commons", "Ancient Desert", "Frozen Valley", "Crystal Swamp", "Cloudy Islands", "The Underworld"}, function(Option)
+farming:Dropdown("Selected Zone", {"The Commons", "Ancient Desert", "Frozen Valley", "Crystal Swamp", "Cloudy Islands", "The Underworld", "Atlantis"}, function(Option)
     if Option == "The Commons" then
         _G.SZone = "Zone1"
     elseif Option == "Ancient Desert" then
@@ -34,6 +34,8 @@ farming:Dropdown("Selected Zone", {"The Commons", "Ancient Desert", "Frozen Vall
         _G.SZone = "Zone5"
     elseif Option == "The Underworld" then
         _G.SZone = "Zone6"
+    elseif Option == "Atlantis" then
+        _G.SZone = "Zone7"
     end
 end)
 
