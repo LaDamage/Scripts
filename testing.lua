@@ -23,15 +23,19 @@ function HatchEgg()
 end
 
 --// Activation
-while _G.ScriptModule.AutoClick == true do
-    wait(0.1)
-    AutoClick()
-end
+spawn(function()
+    while _G.ScriptModule.AutoClick == true do
+        wait(0.1)
+        AutoClick()
+    end
+end)
 
-while _G.ScriptModule.AutoHatch == true do
-    wait(0.1)
-    HatchEgg()
-end
+spawn(function()
+    while _G.ScriptModule.AutoHatch == true do
+        wait(0.1)
+        HatchEgg()
+    end
+end)
 
 --// Check Notifications
 if _G.ScriptModule.AutoClick == true then
