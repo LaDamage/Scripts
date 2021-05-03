@@ -53,16 +53,9 @@ function Anarchy:Notification(title, message, duration, color)
 		color = Color3.fromRGB(153, 0, 255)
 	end
 	
-	local WindowHolder = Instance.new("Frame")
-	WindowHolder.Name = "WindowHolder"
-	WindowHolder.Parent = NotificationHolder
-	WindowHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	WindowHolder.BackgroundTransparency = 1.000
-	WindowHolder.Size = UDim2.new(0, 250, 0, 100)
-
 	local Window = Instance.new("Frame")
 	Window.Name = "Window"
-	Window.Parent = WindowHolder
+	Window.Parent = NotificationHolder
 	Window.BackgroundColor3 = Color3.fromRGB(37, 37, 37)
 	Window.ClipsDescendants = true
 	Window.Size = UDim2.new(0, 250, 0, 100)
@@ -118,7 +111,7 @@ function Anarchy:Notification(title, message, duration, color)
 	Message.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Message.TextSize = 18.000
 	Message.TextYAlignment = Enum.TextYAlignment.Top
-
+	
 	coroutine.wrap(tick)(Window, duration)
 end
 return Anarchy
