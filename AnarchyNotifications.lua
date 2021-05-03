@@ -28,7 +28,7 @@ UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
 UIListLayout.Padding = UDim.new(0, 5)
 
 function tick(element, time)
-	element:FindFirstChild("Line"):TweenSize(UDim2.new(0, 197,0, 1), "Out", "Linear", time)
+	element:FindFirstChild("Line"):TweenSize(UDim2.new(0, 250,0, 1), "Out", "Linear", time)
 	wait(time)
 	element.Parent:TweenSize(UDim2.new(0, 250,0, 0), "Out", "Quint", 1.5)
 	wait(1)
