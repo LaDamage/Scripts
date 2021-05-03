@@ -67,7 +67,7 @@ function Anarchy:Notification(title, message, duration, color)
 	Line.BackgroundColor3 = Color3.fromRGB(153, 0, 255)
 	Line.ClipsDescendants = true
 	Line.Position = UDim2.new(0, 0, 0.970000029, 0)
-	Line.Size = UDim2.new(0, 250, 0, 3)
+	Line.Size = UDim2.new(0, 0, 0, 3)
 
 	local UICorner_2 = Instance.new("UICorner")
 	UICorner_2.CornerRadius = UDim.new(0, 4)
