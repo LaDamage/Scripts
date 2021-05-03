@@ -13,12 +13,15 @@ NotificationHolder.Name = "NotificationHolder"
 NotificationHolder.Parent = AnarchyNotification
 NotificationHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 NotificationHolder.BackgroundTransparency = 1.000
-NotificationHolder.BorderColor3 = Color3.fromRGB(27, 42, 53)
-NotificationHolder.Position = UDim2.new(0.839393914, 0, 0.735872209, 0)
-NotificationHolder.Size = UDim2.new(0, 250, 0, 205)
+NotificationHolder.BorderSizePixel = 0
+NotificationHolder.Position = UDim2.new(0.839393914, 0, 0.669533193, 0)
+NotificationHolder.Size = UDim2.new(0, 250, 0, 259)
 NotificationHolder.CanvasSize = UDim2.new(0, 0, 0, 0)
 NotificationHolder.ScrollBarThickness = 0
 NotificationHolder.ScrollingEnabled = false
+NotificationHolder.BottomImage = ""
+NotificationHolder.MidImage = ""
+NotificationHolder.TopImage = ""
 
 local UIListLayout = Instance.new("UIListLayout")
 UIListLayout.Parent = NotificationHolder
@@ -30,7 +33,7 @@ UIListLayout.Padding = UDim.new(0, 5)
 function tick(element, time)
 	element:FindFirstChild("Line"):TweenSize(UDim2.new(0, 250,0, 1), "Out", "Linear", time)
 	wait(time)
-	element.Parent:TweenSize(UDim2.new(0, 250,0, 0), "In", "Quint", 1.5)
+	element.Parent:TweenSize(UDim2.new(0, 250,0, 0), "Out", "Quint", 1.5)
 	wait(1)
 	element.Parent:Destroy()
 end
